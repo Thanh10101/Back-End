@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const path = require('path')
 const app = express()
 const webRouter = require('./routes/web')
 const viewEngine = require('./config/viewEngine')
@@ -16,5 +15,5 @@ viewEngine(app)
 app.use('/', webRouter)
 
 app.listen(port, hostname, () => {
-    console.log(`Example app listening on port http://${hostname}:${port}`)
+    console.log(`http://${hostname}:${port}`)
 })
