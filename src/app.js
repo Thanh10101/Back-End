@@ -10,11 +10,13 @@ const hostname = process.env.HOST_NAME
 //config view engine
 app.set('views', path.join(__dirname, 'views'))
 app.set('viewengine', 'ejs')
+//config stastic file
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
     res.render('sample.ejs')
 })
 
-app.listen(port,hostname, () => {
+app.listen(port, hostname, () => {
     console.log(`Example app listening on port http://${hostname}:${port}`)
 })
