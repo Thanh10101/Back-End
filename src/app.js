@@ -23,7 +23,6 @@ connection.query(
 //config view engine
 viewEngine(app)
 
-
 //router
 app.use('/', webRouter)
 
