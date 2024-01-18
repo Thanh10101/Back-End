@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const { getHomepage, getDetails } = require('../controllers/homeController')
+const homeController = require('../controllers/homeController')
 
 const initWeb = (app) => {
-    router.get('/', getHomepage)
-    router.get('/Details', getDetails)
+    router.get('/', homeController.getHomepage)
+    router.get('/Details', homeController.getDetails)
 
     return app.use('/', router)
 }

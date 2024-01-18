@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const { getHomepage, getDetails } = require('../controllers/homeController')
+const { displayUser, createUser, updateyUser, deleteyUser } = require('../controllers/admin.api.controller')
 
 const initApi = (app) => {
-    router.get('/', getHomepage)
-    router.get('/Details', getDetails)
+    router.get('/display-user', displayUser)
+    router.post('/create-user', createUser)
+    router.put('/update-user', updateyUser)
+    router.delete('/delete-user/:id', deleteyUser)
 
-    return app.use('/api/v1/', router)
+    return app.use('/api/v1', router)
 }
 
 module.exports = initApi
