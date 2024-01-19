@@ -1,7 +1,10 @@
-const connection = require('../config/db')
+const dataTypes = require('sequelize/lib/data-types');
+const { sequelize, DataTypes } = require('../config/Sequelize');
+const connection = require('../config/db');
+const User = require('../models/user')
 
-const getHomepage = (req, res) => {
-    return res.render("homepage.ejs")
+const getHomepage = async (req, res) => {
+
 }
 
 const getDetails = (req, res) => {
