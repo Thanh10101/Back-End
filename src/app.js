@@ -8,7 +8,7 @@ const initApi = require('./routes/api')
 //Config env
 const port = process.env.PORT || 3001
 const hostname = process.env.HOST_NAME
-
+global.process.setMaxListeners(0)
 //config view engine
 viewEngine(app)
 
@@ -16,7 +16,8 @@ viewEngine(app)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 //router
-initWeb(app)
+initWeb.initWebAdmin(app)
+initWeb.initWebClient(app)
 initApi(app)
 
 app.listen(port, hostname, () => {
