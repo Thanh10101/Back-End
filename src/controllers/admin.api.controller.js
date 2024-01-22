@@ -1,20 +1,8 @@
 const User = require('../models/user')
+const apiStatus = require('../services/apistatus')
 
-///set http status qpi 
-const apiStatus = (num, req, res, noffi) => {
-    if (num == 200) {
-        res.status(num).json({
-            message: 'ok',
-            noffication: noffi
-        })
-    }
-    if (num == 400) {
-        res.status(num).json({
-            message: 'Something went wrong!',
-            enoffication: noffi
-        })
-    }
-}
+
+
 // !Exist create new
 const initUser = async () => {
     await User.sync();
@@ -38,12 +26,12 @@ const displayUser = async (req, res) => {
 const createUser = async (req, res) => {
     const { firstName, lastName, address, city } = req.body;
     if (!firstName || !lastName || !address || !city) {
-        apiStatus(400, req, res, 'Don\'t let data emty!')
-
+        apiStatus(400, req, res, 'Don\'t let data empty')
     }
-
-    const jane = await User.create({ firstName: firstName, lastName: lastName, address: address, city: city });
-    apiStatus(200, req, res, 'Create success!')
+    else {
+        const jane = await User.create({ firstName: firstName, lastName: lastName, address: address, city: city });
+        apiStatus(200, req, res, 'Create success!')
+    }
 }
 
 const updateUser = (req, res) => {

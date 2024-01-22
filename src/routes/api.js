@@ -3,7 +3,7 @@ const router = express.Router()
 const { displayUser, createUser, updateUser, deleteUser } = require('../controllers/admin.api.controller')
 
 const initApi = (app) => {
-    
+
     router.get('/display-user', displayUser)
     router.post('/create-user', createUser)
     router.put('/update-user', updateUser)
