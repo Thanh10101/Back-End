@@ -1,19 +1,18 @@
+'use strict';
 const User = require('../models/user')
+const Models = require('../models/index')
 const apiStatus = require('../services/apistatus')
 
 
 
-// !Exist create new
-const initUser = async () => {
-    await User.sync();
-}
+
 
 //Usser
 
 //http://localhost:3000/api/v1/display-user
 const displayUser = async (req, res) => {
     // await apiStatus(200, req, res)
-    await initUser()
+    // await initUser()
     //function query
     const user = await User.findAll()
     if (user === null) {

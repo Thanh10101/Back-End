@@ -8,7 +8,7 @@ const initWebAdmin = (app) => {
     router.post('/create-user', adminUser.createUser)
     router.put('/update-user', adminUser.updateUser)
     router.delete('/delete-user/:id', adminUser.deleteUser)
-
+    
     return app.use('/admin', router)
 }
 
