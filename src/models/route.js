@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       Route.belongsToMany(models.Role, {
         as: 'roleData',
         through: 'roleRoute',
-        foreignKey: 'routeId'
+        foreignKey: 'routeId',
+        targetKey: 'id'
       })
     }
   }

@@ -13,7 +13,14 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-
+            roleRoute.belongsTo(models.Role, {
+                foreignKey: 'roleId',
+                as: 'roleData'
+            })
+            roleRoute.belongsTo(models.Route, {
+                foreignKey: 'routeId',
+                as: 'routeData'
+            })
         }
     }
     roleRoute.init({

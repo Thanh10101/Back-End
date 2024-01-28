@@ -17,9 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'roleId',
       })
       Role.belongsToMany(models.Route, {
-        as:'routeData',
+        as: 'routeData',
         through: 'roleRoute',
-        foreignKey: 'roleId'
+        foreignKey: 'roleId',
+        targetKey: 'id'
       })
     }
   }
@@ -29,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Role',
-    tableName:  'Roles'
+    tableName: 'Roles'
   });
 
   return Role;

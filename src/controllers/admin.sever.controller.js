@@ -20,27 +20,35 @@ const displayUser = async (req, res) => {
             include: [{
                 model: Models.Role,
                 as: 'roleData',
-               
+
             }]
         })
-        // const query3 = await Models.roleRoute.findOne({
-        //     where: { id: 1 },
-        //     iclude: {
-        //         model: {
-        //             Route,
-        //             Role
-        //         },
-        //         required: true
-        //     }
-        // }
+        const query3 = await Models.Role.findAll({
+            where: { id: 1 },
+            attributes: ['name'],
+            include: [{
+                model: Models.Route,
+                attributes: ['url'],
+                as: 'routeData',
 
+            }]
+        })
+        const query4 = await Models.roleRoute.findAll({
+            where: { id: 1 },
+            include: [{
+                model: Models.Role,
+                attributes: ['name'],
+                as: 'roleData',
+
+            }]
+        })
         // )
 
         // let Role = query2.Role()
         // res.send(JSON.stringify(Role, null, 2))
         // const query4 = await query2.getRole()
         // res.send(JSON.stringify(query2, null, 2))
-        console.log(JSON.stringify(query2, null, 2))
+        console.log(JSON.stringify(query4, null, 2))
 
     }
     catch (err) {
