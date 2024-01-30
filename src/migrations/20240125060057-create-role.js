@@ -7,7 +7,8 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'roleId'
       },
       name: {
         type: Sequelize.STRING
@@ -25,7 +26,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface,sequelize) {
+  async down(queryInterface, sequelize) {
     await queryInterface.dropTable('Roles');
   }
 };

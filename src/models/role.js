@@ -20,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'routeData',
         through: 'roleRoute',
         foreignKey: 'roleId',
-        targetKey: 'id'
       })
     }
   }
@@ -30,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Role',
-    tableName: 'Roles'
+    // tableName: 'Roles'
   });
 
   return Role;
