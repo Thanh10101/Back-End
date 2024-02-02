@@ -7,7 +7,8 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'userId'
       },
       firstName: {
         type: Sequelize.STRING
@@ -26,11 +27,8 @@ module.exports = {
       },
       roleId: {
         type: Sequelize.INTEGER,
-        allowNull:false,
-        // references: {
-        //   model: 'role',
-        //   key: 'id'
-        // }
+        allowNull: false,
+      
 
       },
       createdAt: {
@@ -44,7 +42,7 @@ module.exports = {
 
     });
   },
-  async down(queryInterface,sequelize) {
+  async down(queryInterface, sequelize) {
     await queryInterface.dropTable('Users');
   }
 };

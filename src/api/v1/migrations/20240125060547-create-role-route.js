@@ -7,11 +7,12 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'roleRouteId'
       },
       roleId: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false,
         // references: {
         //   model: 'Roles',
         //   key: 'id'
@@ -19,7 +20,7 @@ module.exports = {
       },
       routeId: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false,
         // References: {
         //   model: 'Routes',
         //   key: 'id'

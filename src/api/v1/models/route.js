@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'roleData',
         through: 'roleRoute',
         foreignKey: 'routeId',
-        targetKey: 'id'
       })
     }
   }
@@ -26,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Route',
-    // tableName: 'Routes'
+    tableName: 'Routes'
   });
   return Route;
 };

@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.belongsTo(models.Role, {
         as: 'roleData',
-        foreignKey: 'roleId'
+        foreignKey: 'roleId',
+
       })
 
     }
@@ -32,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    // tableName: 'Users'
+    tableName: 'Users'
   });
   return User;
 };

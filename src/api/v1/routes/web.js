@@ -15,6 +15,8 @@ const initWebAdmin = (app) => {
 
 const initWebClient = (app) => {
     router.get('/', testUser.getAllUser)
+    router.get('/:id', testUser.getUserById)
+    router.post('/post', testUser.postUser)
     return app.use('/', router)
 }
 

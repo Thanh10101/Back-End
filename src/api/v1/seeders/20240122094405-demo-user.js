@@ -11,7 +11,7 @@ module.exports = {
       phone: 123456,
       createdAt: new Date(),
       updatedAt: new Date(),
-      Roleid: 1
+      roleId: 1
     }], {})
     await queryInterface.bulkInsert('Users', [{
       firstName: 'Admin',
@@ -20,7 +20,7 @@ module.exports = {
       phone: 999999,
       createdAt: new Date(),
       updatedAt: new Date(),
-      Roleid: 2
+      roleId: 2
     }], {})
   },
 
