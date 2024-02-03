@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 //router
 initWeb.initWebAdmin(app)
 initWeb.initWebClient(app)
-initApi(app)
+// initApi(app)
 
 app.listen(port, hostname, () => {
   console.log(`http://${hostname}:${port}`)

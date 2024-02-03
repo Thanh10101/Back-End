@@ -2,8 +2,7 @@
 const {
     Model
 } = require('sequelize')
-const Role = require('../models/role')
-const Route = require('../models/route')
+
 
 module.exports = (sequelize, DataTypes) => {
     class roleRoute extends Model {
@@ -12,16 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          * This method is not a part of Sequelize lifecycle.
          * The `models/index` file will call this method automatically.
          */
-        static associate(models) {
-            roleRoute.belongsTo(models.Role, {
-                foreignKey: 'roleId',
-                as: 'roleData'
-            })
-            roleRoute.belongsTo(models.Route, {
-                foreignKey: 'routeId',
-                as: 'routeData'
-            })
-        }
+        static associate(models) {}
     }
     roleRoute.init({
         roleId: {
@@ -35,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'roleRoute',
-        tableName: 'roleRoutes'
+        // tableName: 'roleroutes'
     });
     return roleRoute;
 };
