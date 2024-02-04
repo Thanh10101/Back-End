@@ -17,6 +17,7 @@ const initWebClient = (app) => {
     router.get('/', testUser.getAllUser)
     router.get('/:id', testUser.getUserById)
     router.post('/post', testUser.postUser)
+    router.post('/checkLogin', testUser.login)
     return app.use('/', router)
 }
 

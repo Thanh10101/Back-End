@@ -57,5 +57,22 @@ var that = module.exports = {
         } catch (error) {
             throw (error)
         }
-    }
+    },
+    login: async(object) => {
+        try {
+
+            return await new Promise(async(resolve, reject) => {
+                const user = await db.User.findOne({
+                    where: {
+                        email: object.email
+                    }
+
+                })
+                const bool = await user.authenticate(object.password);
+                return bool ? resolve(bool) : reject(bool)
+            })
+        } catch (error) {
+
+        }
+    },
 }

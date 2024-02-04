@@ -1,7 +1,35 @@
 const { emit } = require('nodemon')
-const { getAllUser, getUserById, postUser } = require('../services/testservice')
+const { getAllUser, getUserById, postUser, login } = require('../services/testservice')
+const {} = require('../middleware/athen')
 
 var that = module.exports = {
+    login: async(req, res, next) => {
+        try {
+            const object = {
+                    email,
+                    password
+                } = await req.body
+                //spread vs destruction
+                // const {...ob } = object
+                // const { password: omittedPassword, ...ob } = object
+                // console.log(omittedPassword)
+                // console.log(ob)
+                // console.log(object)
+            const checkLogin = await login(object)
+            if (checkLogin) {
+                return res.status(200).json({
+                    loginVali: true
+                })
+            } else {
+                return res.status(200).json({
+                    loginVali: false
+                })
+            }
+
+        } catch (error) {
+            next(error)
+        }
+    },
     getAllUser: async(req, res, next) => {
         try {
             const User = await getAllUser()

@@ -1,4 +1,5 @@
 'use strict';
+const useBcrypt = require('sequelize-bcrypt')
 const {
     Model
 } = require('sequelize')
@@ -30,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         phone: DataTypes.INTEGER,
         address: DataTypes.STRING,
@@ -44,6 +45,11 @@ module.exports = (sequelize, DataTypes) => {
         sequelize,
         modelName: 'User',
         tableName: 'users'
+    });
+    useBcrypt(User, {
+        field: 'password', // secret field to hash, default: 'password'
+        rounds: 12, // used to generate bcrypt salt, default: 12
+        compare: 'authenticate', // method used to compare secrets, default: 'authenticate'
     });
     return User;
 };
