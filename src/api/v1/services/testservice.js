@@ -34,7 +34,7 @@ var that = module.exports = {
                     include: [{
                         model: db.Role,
                         as: 'roleData',
-                        attributes: ['name']
+                        attributes: ['id', 'name']
                     }]
                 })
                 return User ? resovle(User) : reject('Canot find user ' + id)
@@ -63,13 +63,14 @@ var that = module.exports = {
 
             return await new Promise(async(resolve, reject) => {
                 const user = await db.User.findOne({
-                    where: {
-                        email: object.email
-                    }
-
-                })
+                        where: {
+                            email: object.email
+                        },
+                        attributes: ['id', 'password', 'roleId']
+                    })
+                    //bcripts
                 const bool = await user.authenticate(object.password);
-                return bool ? resolve(bool) : reject(bool)
+                return bool ? resolve(user) : reject(bool)
             })
         } catch (error) {
 

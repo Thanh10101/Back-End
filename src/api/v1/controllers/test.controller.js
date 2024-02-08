@@ -1,24 +1,24 @@
 const { emit } = require('nodemon')
 const { getAllUser, getUserById, postUser, login } = require('../services/testservice')
 const {} = require('../middleware/athen')
+const session = require('express-session')
 
 var that = module.exports = {
     login: async(req, res, next) => {
         try {
             const object = {
-                    email,
-                    password
-                } = await req.body
-                //spread vs destruction
-                // const {...ob } = object
-                // const { password: omittedPassword, ...ob } = object
-                // console.log(omittedPassword)
-                // console.log(ob)
-                // console.log(object)
+                email,
+                password
+            } = await req.body
             const checkLogin = await login(object)
             if (checkLogin) {
+                req.session.user = {
+                    id: await checkLogin.id,
+                    roleId: await checkLogin.roleId
+                }
+
                 return res.status(200).json({
-                    loginVali: true
+                    session: req.session
                 })
             } else {
                 return res.status(200).json({
@@ -32,10 +32,12 @@ var that = module.exports = {
     },
     getAllUser: async(req, res, next) => {
         try {
+
             const User = await getAllUser()
 
             return res.status(200).json({
-                data: User
+                // data: User,
+                session: req.session.user
             })
 
         } catch (error) {

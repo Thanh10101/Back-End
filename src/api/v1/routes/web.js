@@ -14,10 +14,14 @@ const initWebAdmin = (app) => {
 }
 
 const initWebClient = (app) => {
-    router.get('/', testUser.getAllUser)
-    router.get('/:id', testUser.getUserById)
-    router.post('/post', testUser.postUser)
-    router.post('/checkLogin', testUser.login)
+    router.get('/', testUser.getAllUser);
+    router.get('/logout', async(req, res) => {
+        await req.session.destroy();
+        res.send('logout')
+    });
+    router.get('/:id', testUser.getUserById);
+    router.post('/post', testUser.postUser);
+    router.post('/checkLogin', testUser.login);
     return app.use('/', router)
 }
 
