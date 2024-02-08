@@ -3,7 +3,7 @@ const { getAllUser, getUserById, postUser, login } = require('../services/testse
 const {} = require('../middleware/athen')
 const session = require('express-session')
 
-var that = module.exports = {
+const that = module.exports = {
     login: async(req, res, next) => {
         try {
             const object = {
@@ -36,8 +36,8 @@ var that = module.exports = {
             const User = await getAllUser()
 
             return res.status(200).json({
-                // data: User,
-                session: req.session.user
+                data: User,
+                cookie: req.session
             })
 
         } catch (error) {

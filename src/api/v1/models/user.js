@@ -41,11 +41,14 @@ module.exports = (sequelize, DataTypes) => {
             field: 'roleId',
             defaultValue: 1
         }
+
     }, {
         sequelize,
         modelName: 'User',
-        tableName: 'users'
+        tableName: 'users',
+
     });
+
     useBcrypt(User, {
         field: 'password', // secret field to hash, default: 'password'
         rounds: 12, // used to generate bcrypt salt, default: 12
