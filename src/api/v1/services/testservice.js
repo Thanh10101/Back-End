@@ -7,13 +7,6 @@ var that = module.exports = {
             return await new Promise((resovle, reject) => {
                 const User = db.User.findAll({
                     raw: true,
-                    attributes: ['firstName', 'lastName', 'email', 'address', 'phone', 'password'],
-                    include: [{
-                        model: db.Role,
-                        as: 'roleData',
-                        attributes: ['name'],
-                        required: false,
-                    }]
                 })
 
 

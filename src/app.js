@@ -20,13 +20,7 @@ app.use(cors({
     origin: '*',
     methods: ['POST', 'GET', 'PUT', 'DELETE']
 }));
-const option = {
-    host: 'localhost',
-    port: 3006,
-    user: 'root',
-    password: 123456,
-    database: 'bookstore',
-};
+
 
 const sessionStore = new MySQLStore({}, connection);
 

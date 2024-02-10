@@ -35,10 +35,7 @@ const that = module.exports = {
 
             const User = await getAllUser()
 
-            return res.status(200).json({
-                data: User,
-                cookie: req.session
-            })
+            return res.status(200).json(User)
 
         } catch (error) {
             next(error)
