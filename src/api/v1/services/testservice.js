@@ -1,3 +1,4 @@
+const { where } = require('sequelize')
 const db = require('../models/index')
 
 
@@ -64,6 +65,25 @@ var that = module.exports = {
                     //bcripts
                 const bool = await user.authenticate(object.password);
                 return bool ? resolve(user) : reject(bool)
+            })
+        } catch (error) {
+
+        }
+    },
+    getUserByEmail: async(email) => {
+        try {
+            return await new Promise(async(resolve, reject) => {
+                const user = await db.User.findOne({
+                    where: {
+                        email: email
+                    },
+                    attributes: ['email']
+                })
+                if (user && user.email === email) {
+                    resolve(true); // User exists
+                } else {
+                    resolve(false); // User does not exist
+                }
             })
         } catch (error) {
 

@@ -1,5 +1,5 @@
 const { emit } = require('nodemon')
-const { getAllUser, getUserById, postUser, login } = require('../services/testservice')
+const { getAllUser, getUserById, postUser, login, getUserByEmail } = require('../services/testservice')
 const {} = require('../middleware/athen')
 const session = require('express-session')
 
@@ -63,11 +63,19 @@ const that = module.exports = {
     postUser: async(req, res, next) => {
         try {
             const info = { firstName, lastName, phone, email, address, password } = req.body
+            const checkEmail = await getUserByEmail(email)
+            console.log(checkEmail)
                 // info.roleId = 1
             if (firstName && lastName && phone && email && address && password) {
-                return res.status(200).json({
-                    data: await postUser(info)
-                })
+                if (!checkEmail) {
+                    return res.status(200).json({
+                        data: await postUser(info)
+                    })
+                } else {
+                    return res.status(403).json({
+                        message: 'email exsit'
+                    })
+                }
             } else {
                 res.status(404).json({
                     message: 'demiss data'
@@ -76,5 +84,5 @@ const that = module.exports = {
         } catch (error) {
             next(error)
         }
-    }
+    },
 }
