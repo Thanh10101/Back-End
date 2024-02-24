@@ -17,6 +17,8 @@ const initWebClient = (app) => {
     router.get('/', testUser.getAllUser);
     router.get('/logout', async(req, res) => {
         await req.session.destroy();
+        res.clearCookie('id');
+        res.clearCookie('roleId');
         res.send('logout')
     });
     router.get('/:id', testUser.getUserById);

@@ -12,6 +12,8 @@ const that = module.exports = {
             } = await req.body
             const checkLogin = await login(object)
             if (checkLogin) {
+                res.cookie('id', await checkLogin.id, { maxAge: 360000, httpOnly: true, secure: true })
+                res.cookie('roleId', await checkLogin.roleId, { maxAge: 360000, httpOnly: true, secure: true })
                 req.session.user = {
                     id: await checkLogin.id,
                     roleId: await checkLogin.roleId
