@@ -60,7 +60,7 @@ var that = module.exports = {
                         where: {
                             email: object.email
                         },
-                        attributes: ['id', 'password', 'roleId']
+                        attributes: ['id', 'email', 'password', 'roleId']
                     })
                     //bcripts
                 const bool = await user.authenticate(object.password);

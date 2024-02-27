@@ -1,31 +1,39 @@
+require('dotenv').config()
 const { emit } = require('nodemon')
 const { getAllUser, getUserById, postUser, login, getUserByEmail } = require('../services/testservice')
 const {} = require('../middleware/athen')
 const session = require('express-session')
+const jwt = require('jsonwebtoken')
 
 const that = module.exports = {
     login: async(req, res, next) => {
         try {
-            const object = {
-                email,
-                password
-            } = await req.body
-            const checkLogin = await login(object)
-            if (checkLogin) {
-                res.cookie('id', await checkLogin.id, { maxAge: 360000, httpOnly: true, secure: true })
-                res.cookie('roleId', await checkLogin.roleId, { maxAge: 360000, httpOnly: true, secure: true })
-                req.session.user = {
-                    id: await checkLogin.id,
-                    roleId: await checkLogin.roleId
-                }
+            const request = {
+                    email,
+                    password
+                } = req.body
+                //check email or pass are exist
+            if (!email || !password) {
+                res,
+                Status(404)
+            }
+            else {
+                //testservice login()
+                const checkLogin = await login(request)
+                if (checkLogin) {
+                    const user = {
+                        email: checkLogin.email,
+                        id: checkLogin.id,
+                        roleId: checkLogin.roleId
+                    }
+                    const accessToken = await jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30000s' })
+                    res.status(200).json({ accessToken })
 
-                return res.status(200).json({
-                    session: req.session
-                })
-            } else {
-                return res.status(200).json({
-                    loginVali: false
-                })
+                } else {
+                    return res.status(404).json({
+                        massage: 'user not exist'
+                    })
+                }
             }
 
         } catch (error) {

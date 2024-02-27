@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const adminUser = require('../controllers/admin.sever.controller')
 const testUser = require('../controllers/test.controller')
-
+const middleware = require('../middleware/athen')
 
 const initWebAdmin = (app) => {
     router.get('/display-user', adminUser.displayUser)
@@ -23,7 +23,13 @@ const initWebClient = (app) => {
     });
     router.get('/:id', testUser.getUserById);
     router.post('/post', testUser.postUser);
-    router.post('/checkLogin', testUser.login);
+    router.post('/login', testUser.login);
+    router.post('/check', middleware.authenToken, (req, res) => {
+        const data = req.data
+        res.json({
+            data
+        })
+    });
     return app.use('/', router)
 }
 
