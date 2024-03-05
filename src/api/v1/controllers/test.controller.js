@@ -26,7 +26,7 @@ const that = module.exports = {
                         id: checkLogin.id,
                         roleId: checkLogin.roleId
                     }
-                    const accessToken = await jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30000s' })
+                    const accessToken = await jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' })
                     res.status(200).json({ accessToken })
 
                 } else {

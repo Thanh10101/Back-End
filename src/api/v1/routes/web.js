@@ -24,7 +24,8 @@ const initWebClient = (app) => {
     router.get('/:id', testUser.getUserById);
     router.post('/post', testUser.postUser);
     router.post('/login', testUser.login);
-    router.post('/check', middleware.authenToken, (req, res) => {
+    router.post('/refeshToken', middleware.refeshToken)
+    router.post('/check', middleware.verifyToken, (req, res) => {
         const data = req.data
         res.json({
             data
